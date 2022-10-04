@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         //setContentView(R.layout.activity_main)
-        setContentView(binding.root)
+        setContentView(binding.root)    //여기서는 하트3이었음
+
+        binding.card1.setImageResource(R.drawable.c_10_of_spades)   //스페이드 10으로 바꿈
     }
 }
