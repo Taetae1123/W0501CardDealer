@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kr.ac.kumoh.s20200085.w0501carddealer.databinding.ActivityMainBinding
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -13,9 +14,24 @@ class MainActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_main)
         setContentView(binding.root)    //여기서는 하트3이었음
 
-        getCardName(29)
+        binding.btnDeal.setOnClickListener {
+            val res = resources.getIdentifier(
+                getCardName(Random.nextInt(52)),
+                "drawable",
+                packageName
+            )
+            binding.card1.setImageResource(res)
+        }
 
-        binding.card1.setImageResource(R.drawable.c_10_of_spades)   //스페이드 10으로 바꿈
+
+        val res = resources.getIdentifier(
+            getCardName(29),
+            "drawable",
+            packageName
+        )
+
+        //binding.card1.setImageResource(R.drawable.c_10_of_spades)   //스페이드 10으로 바꿈
+        //binding.card1.setImageResource(res)
     }
 
     private fun getCardName(c: Int): String{
@@ -30,11 +46,15 @@ class MainActivity : AppCompatActivity() {
         Log.i("getCardName(): ", shape)
 
         val number = when (c % 13) {
+            0->"ace"
             in 1..9 -> (c % 13 +1).toString()
+            10->"jack"
+            11->"queen"
+            12->"king"
             else -> "error"
         }
         Log.i("getCardName(): ", number)
-        return "c_ace_of_spades"
+        return "c_${number}_of_${shape}"
     }
 }
 
@@ -48,3 +68,9 @@ class MainActivity : AppCompatActivity() {
 
 
 //native앱을 일단 만들고 flutter를 하던가 하기!!
+
+
+
+
+//app:layout_constraintBottom_toBottomOf="parent" 가로나 세로에 하나씩은 붙여줘야함
+//layout_ 는 부모와의 관계가 있을 때 붙음
