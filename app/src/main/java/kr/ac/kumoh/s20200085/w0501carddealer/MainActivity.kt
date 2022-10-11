@@ -15,23 +15,32 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)    //여기서는 하트3이었음
 
         binding.btnDeal.setOnClickListener {
-            val res = resources.getIdentifier(
-                getCardName(Random.nextInt(52)),
-                "drawable",
-                packageName
-            )
-            binding.card1.setImageResource(res)
+            val res =IntArray(5)
+            for(i in 0 until res.size){
+                res[i] = resources.getIdentifier(
+                    getCardName(Random.nextInt(52)),
+                    "drawable",
+                    packageName
+                )
+            }
+
+            binding.card1.setImageResource(res[0])
+            binding.card2.setImageResource(res[1])
+            binding.card3.setImageResource(res[2])
+            binding.card4.setImageResource(res[3])
+            binding.card5.setImageResource(res[4])
         }
 
 
-        val res = resources.getIdentifier(
-            getCardName(29),
-            "drawable",
-            packageName
-        )
+        //val res = resources.getIdentifier(
+        //    getCardName(29),
+        //    "drawable",
+        //    packageName
+        //)
 
         //binding.card1.setImageResource(R.drawable.c_10_of_spades)   //스페이드 10으로 바꿈
         //binding.card1.setImageResource(res)
+
     }
 
     private fun getCardName(c: Int): String{
@@ -74,3 +83,6 @@ class MainActivity : AppCompatActivity() {
 
 //app:layout_constraintBottom_toBottomOf="parent" 가로나 세로에 하나씩은 붙여줘야함
 //layout_ 는 부모와의 관계가 있을 때 붙음
+//지금은 seed를 고정해두는게 좋음
+//app:layout_constraintLeft_toRightOf="@id/card3"
+//        app:layout_constraintRight_toRightOf="parent" 인지 start end인지 확인(시험 문제)
